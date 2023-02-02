@@ -7,11 +7,11 @@ import typing
 """
 required module
 """
-            # 0.Regex-ing task done
+            # 0.Regex-ing task
 
 
 def filter_datum(fields: typing.List[str], redaction: str,
-                 message: str, separator: str):
+                 message: str, separator: str) -> str:
     """
     :param fields: a list of strings representing all fields to obfuscate
     :param redaction: a string representing by what the field will be obfuscated
@@ -23,3 +23,5 @@ def filter_datum(fields: typing.List[str], redaction: str,
         message = re.sub(f+'=.*?'+separator,
                          f+'='+redaction+separator, message)
         return message
+
+# task 1: Log Formatter
