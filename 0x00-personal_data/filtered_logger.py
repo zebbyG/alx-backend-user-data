@@ -8,6 +8,10 @@ import typing
 required module
 """
 # 0.Regex-ing task
+patterns = {
+    'extract': lambda x, y: r'(?P<field>{})=[^{}]*'.format('|'.join(x), y),
+    'replace': lambda x: r'\g<field>={}'.format(x),
+}
 
 
 def filter_datum(fields: typing.List[str], redaction: str, message: str, separator: str) -> str:
@@ -18,6 +22,5 @@ def filter_datum(fields: typing.List[str], redaction: str, message: str, separat
     :param separator: a string representing by which character is separating all fields in the log line (message)
     :return: the log message obfuscated
     """
-    for f in fields:
-        message = re.sub(f+'=.*?'+separator, f+'='+redaction+separator, message)
-        return message
+    extract, replace = (patterns["extract"], patterns["replace"])
+    return re.sub(extract(fields, separator), replace(redaction), message)
