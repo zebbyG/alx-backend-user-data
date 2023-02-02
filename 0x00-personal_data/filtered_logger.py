@@ -7,7 +7,7 @@ import typing
 """
 required module
 """
-            # 0.Regex-ing task
+# 0.Regex-ing task
 
 
 def filter_datum(fields: typing.List[str], redaction: str,
@@ -23,5 +23,3 @@ def filter_datum(fields: typing.List[str], redaction: str,
         message = re.sub(f+'=.*?'+separator,
                          f+'='+redaction+separator, message)
         return message
-
-# task 1: Log Formatter
