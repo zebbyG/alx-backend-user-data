@@ -18,3 +18,14 @@ def hash_password(password: str) -> bytes:
     b = password.encode()
     hashed = hashpw(b, bcrypt.gensalt())
     return hashed
+
+# task 6
+
+
+def is_valid(hashed_password: bytes, password: str) -> bool:
+    """
+    :return: if hashed password matches provided password
+    """
+    if bcrypt.checkpw(password.encode(), hashed_password):
+        return True
+    return False
