@@ -86,9 +86,31 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
     db_pwd = os.getenv("PERSONAL_DATA_DB_PASSWORD", "")
     connection = mysql.connector.connect(
         host=db_host,
-        port=3306,
         user=db_user,
         password=db_pwd,
         database=db_name,
     )
     return connection
+
+# task 4
+
+
+def main():
+    """
+    obtain a connection using get_db 7 retrieve all rows
+    in the user table
+    """
+    db = get_db()
+    logger = get_logger()
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM users;")
+    fields = cursor.column_names
+    for row in cursor:
+        message = "".join("{}={}; ".format(k, v) for k, v in zip(fields, row))
+        logger.info(message.strip())
+    cursor.close()
+    db.close()
+
+
+if __name__ == "__main__":
+    main()
