@@ -10,8 +10,7 @@ required module
 # 0.Regex-ing task
 
 
-def filter_datum(fields: typing.List[str], redaction: str,
-                 message: str, separator: str) -> str:
+def filter_datum(fields: typing.List[str], redaction: str, message: str, separator: str) -> str:
     """
     :param fields: a list of strings representing all fields to obfuscate
     :param redaction: a string representing by what the field will be obfuscated
@@ -20,6 +19,5 @@ def filter_datum(fields: typing.List[str], redaction: str,
     :return: the log message obfuscated
     """
     for f in fields:
-        message = re.sub(f+'=.*?'+separator,
-                         f+'='+redaction+separator, message)
+        message = re.sub(f+'=.*?'+separator, f+'='+redaction+separator, message)
         return message
