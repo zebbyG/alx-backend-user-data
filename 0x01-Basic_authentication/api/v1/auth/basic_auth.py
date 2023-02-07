@@ -2,10 +2,9 @@
 """
 Definition of class BasicAuth
 """
-from auth import Auth
+from .auth import Auth
 
 
 class BasicAuth(Auth):
     """ Implement Basic Authorization protocol methods
     """
-    pass
