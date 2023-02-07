@@ -18,8 +18,6 @@ class Auth:
         """
         :return: False
         """
-        # if Auth not in excluded_paths:
-        #     return True
         if path is None:
             return True
         elif excluded_paths is None or excluded_paths == []:
@@ -41,7 +39,12 @@ class Auth:
         """
         :return: None
         """
-        return None
+        if request is None:
+            return None
+        get_header = request.headers.get('Authorization')
+        if get_header is None:
+            return None
+        return get_header
 
     def current_user(self, request=None) -> TypeVar('User'):
         """
