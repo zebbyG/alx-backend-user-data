@@ -26,12 +26,15 @@ def before_request():
     """
     if auth is None:
         pass
-    if request.path not in ['/api/v1/status/', '/api/v1/unauthorized/', '/api/v1/forbidden/']:
+    request_path = ['/api/v1/status/',
+                    '/api/v1/unauthorized/',
+                    '/api/v1/forbidden/']
+    if request_path not in api.v1.auth.require_auth():
         pass
     if auth.authorization_header(request) is None:
-        abort(401, description="unauthorized")
+        abort(401, description="Unauthorized")
     if auth.current_user(request) is None:
-        abort(403, description="forbidden")
+        abort(403, description="Forbidden")
 
 
 @app.errorhandler(404)
