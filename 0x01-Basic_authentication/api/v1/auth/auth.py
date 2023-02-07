@@ -18,7 +18,24 @@ class Auth:
         """
         :return: False
         """
-        return False
+        # if Auth not in excluded_paths:
+        #     return True
+        if path is None:
+            return True
+        elif excluded_paths is None or excluded_paths == []:
+            return True
+        elif path in excluded_paths:
+            return False
+        else:
+            for z in excluded_paths:
+                if z.startswith(path):
+                    return False
+                if path.startswith(z):
+                    return False
+                if z[-1] == "*":
+                    if path.startswith(z[:-1]):
+                        return False
+        return True
 
     def authorization_header(self, request=None) -> str:
         """
