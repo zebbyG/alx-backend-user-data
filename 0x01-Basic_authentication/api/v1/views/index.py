@@ -34,3 +34,10 @@ def unauthorized() -> None:
     """
     abort(401)
 
+
+@app_views.route('/forbidden/', strict_slashes=False)
+def forbidden() -> None:
+    """
+    forbidden endpoint
+    """
+    abort(403)
