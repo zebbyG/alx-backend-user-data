@@ -24,7 +24,7 @@ class Auth:
         """
         :return: None
         """
-        return str(None)
+        return None
 
     def current_user(self, request=None) -> TypeVar('User'):
         """
