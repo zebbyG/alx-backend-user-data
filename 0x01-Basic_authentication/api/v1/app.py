@@ -31,10 +31,10 @@ def before_request():
                     '/api/v1/forbidden/']
 
     if auth.require_auth(request.path, request_path):
-    if auth.authorization_header(request) is None:
-        abort(401, description="Unauthorized")
-    if auth.current_user(request) is None:
-        abort(403, description="Forbidden")
+        if auth.authorization_header(request) is None:
+            abort(401, description="Unauthorized")
+        if auth.current_user(request) is None:
+            abort(403, description="Forbidden")
 
 
 @app.errorhandler(404)
