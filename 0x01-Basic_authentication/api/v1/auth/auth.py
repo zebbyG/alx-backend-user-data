@@ -14,7 +14,7 @@ class Auth:
     """
     class Auth to manage API authentication
     """
-    def require_auth(path: str, excluded_paths: List[str]) -> bool:
+    def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """
         :return: False
         """
@@ -28,7 +28,6 @@ class Auth:
 
     def current_user(self, request=None) -> TypeVar('User'):
         """
-        :param request:
-        :return:
+        :return: None
         """
         return None
