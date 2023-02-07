@@ -29,8 +29,8 @@ def before_request():
     request_path = ['/api/v1/status/',
                     '/api/v1/unauthorized/',
                     '/api/v1/forbidden/']
-    thap = api.v1.auth.require_auth()
-    if request_path not in thap:
+
+    if auth.require_auth(request.path, request_path):
         pass
     if auth.authorization_header(request) is None:
         abort(401, description="Unauthorized")
